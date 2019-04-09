@@ -1,8 +1,11 @@
 package fr.umontpellier.iut;
 
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.Objects;
+import java.util.TreeSet;
 
-public class Employe {
+public class Employe implements Comparable<Employe> {
     private String numeroSecuriteSocial;
     private String nom;
     private String prenom;
@@ -101,5 +104,27 @@ public class Employe {
 
     public double getNbHeure() {
         return nbHeure;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employe employe = (Employe) o;
+        return numeroSecuriteSocial.equals(employe.numeroSecuriteSocial);
+    }
+
+    @Override
+    public int hashCode() {
+        return numeroSecuriteSocial.hashCode();
+    }
+
+    @Override
+    public int compareTo(Employe e){
+        int x = nom.compareTo(e.nom);
+        if( x == 0){
+            return -numeroSecuriteSocial.compareTo(e.numeroSecuriteSocial);
+        }
+        return x;
     }
 }

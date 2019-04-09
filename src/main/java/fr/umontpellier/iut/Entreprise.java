@@ -3,6 +3,7 @@ package fr.umontpellier.iut;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.TreeSet;
 
 public class Entreprise {
     private Collection<Employe> lePersonnel;
@@ -24,5 +25,12 @@ public class Entreprise {
         return "Entreprise{" +
                 "lePersonnel=" + lePersonnel +
                 '}';
+    }
+    public Collection<Employe> getEmployes() {
+        TreeSet<Employe> t = new TreeSet<>();
+        for (Employe e : lePersonnel) {
+            t.add(e);
+        }
+        return t;
     }
 }
