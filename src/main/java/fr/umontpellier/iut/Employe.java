@@ -1,6 +1,7 @@
 package fr.umontpellier.iut;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.TreeSet;
@@ -13,6 +14,7 @@ public class Employe implements Comparable<Employe> {
     private double nbHeure;
     private double base;
     private LocalDate dateEmbauche;
+    private double bonus;
 
     public Employe(String numeroSecuriteSocial, String nom, String prenom, int echelon, double nbHeure, double base) {
         this.numeroSecuriteSocial = numeroSecuriteSocial;
@@ -66,6 +68,10 @@ public class Employe implements Comparable<Employe> {
         }
     }
 
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
+    }
+
     public LocalDate getDateEmbauche() {
         return dateEmbauche;
     }
@@ -82,12 +88,20 @@ public class Employe implements Comparable<Employe> {
         return base;
     }
 
+    public int getMoisAnciennete(){
+        return (int) ChronoUnit.MONTHS.between(dateEmbauche, LocalDate.now());
+    }
+
     public double calculerSalaireBrut(){
         return(this.base * this.nbHeure + 100);
     }
 
     public double calculerSalaireNet(){
         return(this.calculerSalaireBrut()*0.8);
+    }
+
+    public double getBonus() {
+        return bonus;
     }
 
     @Override
