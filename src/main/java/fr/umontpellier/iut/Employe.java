@@ -15,6 +15,7 @@ public class Employe implements Comparable<Employe> {
     private double base;
     private LocalDate dateEmbauche;
     private double bonus;
+    private String adresse;
 
     public Employe(String numeroSecuriteSocial, String nom, String prenom, int echelon, double nbHeure, double base) {
         this.numeroSecuriteSocial = numeroSecuriteSocial;
@@ -104,6 +105,14 @@ public class Employe implements Comparable<Employe> {
         return bonus;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
+    }
+
     @Override
     public String toString() {
         return "Employe{" +
@@ -140,5 +149,9 @@ public class Employe implements Comparable<Employe> {
             return -numeroSecuriteSocial.compareTo(e.numeroSecuriteSocial);
         }
         return x;
+    }
+
+    public double getIndemniteTransport(){
+        return base * GestionDistance.getDistance(adresse);
     }
 }
